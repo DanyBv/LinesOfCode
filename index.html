@@ -30,7 +30,7 @@
     </div> <!-- /container -->
 
     <div class="container">
-        <div ng-app="LinesOfCodeApp" ng-controller="LinesOfCodeCtrl">
+        <div ng-app="LinesOfCodeApp" ng-controller="LinesOfCodeCtrl" data-ng-init="init()">
             <button type="button" class="btn btn-info" ng-click="addLoC()">Code some lines</button>
             {{ LoC + " line(s) of code" }}
             <button type="button" class="btn btn-success" ng-click="saveAll()">Save</button>

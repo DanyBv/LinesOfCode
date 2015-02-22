@@ -26,6 +26,8 @@ app.controller("LinesOfCodeCtrl", function($scope) {
     };
     
     $scope.init = function() {
-        $scope.LoC=parseInt(readCookie("loc"));
+        var loc=parseInt(readCookie("loc"));
+        if(loc)
+            $scope.LoC=loc;
     };
 });

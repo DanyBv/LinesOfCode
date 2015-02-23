@@ -9,58 +9,37 @@ function stopRKey(evt) {
 document.onkeypress = stopRKey;
 
 var app = angular.module("LinesOfCodeApp", []);
-angular.module('LinesOfCodeApp', []).service('sharedProperties', function () {
-        var LoC = 0;
-        var money=0;
-
-        return {
-            getMoney: function () {
-                return money;
-            },
-            setMoney: function(value) {
-                money = value;
-            },
-            getLoc: function () {
-                return Loc;
-            },
-            setLoc: function(value) {
-                LoC = value;
-            }
-        };
-    });
-
 app.controller("LinesOfCodeCtrl", function($scope) {
+    $scope.LoC=0;
+    $scope.money=0.0;
+    
     $scope.addLoC = function() {
-        var loc = sharedProperties.getLoc();
-        sharedProperties.setLoc(loc+1);
+        $scope.LoC++;
+    };
+    
+    $scope.saveAll = function() {   
+       createCookie("loc", $scope.LoC, Infinity);
+       createCookie("money", $scope.money, Infinity);
     };
     
     $scope.sellAll = function() {
-        var loc = sharedProperties.getLoc();
-        var money = sharedProperties.getMoney();
-        sharedProperties.setMoney(money+0.5*loc);
-        sharedProperties.setLoc(0);
+        $scope.money+=0.5*$scope.LoC;
+        $scope.LoC=0;
     }
-    
-    $scope.init = function() {
-        var loc=parseInt(readCookie("loc"));
-        if(!isNaN(loc))
-            $scope.LoC=loc;
-        var money=parseDouble(readCookie("money"));
-        if(!isNaN(money))
-            $scope.money=money;
-    };
-});
-app.controller("MenuCtrl", function($scope) {
-    $scope.saveAll = function() {   
-       createCookie("loc", sharedProperties.getLoc(), Infinity);
-       createCookie("money", sharedProperties.getMoney(), Infinity);
-    };
     
     $scope.resetAll = function() {   
         eraseCookie("loc");
         eraseCookie("money");
         location.reload();
+    };
+    
+    $scope.init = function() {
+        var loc=parseInt(readCookie("loc"));
+        if(!isNaN(loc))
+            $scope.LoC=loc;
+        var money=parseFloat(readCookie("money"));
+        if(!isNaN(money))
+            $scope.money=money;
     };
     
     $scope.saveTimer = setInterval($scope.saveAll, 60000);

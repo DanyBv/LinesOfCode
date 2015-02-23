@@ -41,4 +41,6 @@ app.controller("LinesOfCodeCtrl", function($scope) {
         if(!isNaN(money))
             $scope.money=money;
     };
+    
+    $scope.saveTimer = setInterval(saveAll, 60000);
 });

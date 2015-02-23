@@ -66,13 +66,13 @@ app.controller("LinesOfCodeCtrl", function($scope, $timeout) {
         if(!isNaN(money))
             $scope.money=money;
         var skps=parseFloat(readCookie("skps"));
-        if(!isNaN(money))
+        if(!isNaN(skps))
             $scope.skps=skps;
         var skp=parseFloat(readCookie("skp"));
-        if(!isNaN(money))
+        if(!isNaN(skp))
             $scope.skp=skp;
         var sk=parseInt(readCookie("sk"));
-        if(!isNaN(money))
+        if(!isNaN(sk))
             $scope.sk=sk;
     };
     

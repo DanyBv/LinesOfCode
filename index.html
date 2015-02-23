@@ -35,7 +35,7 @@
 
     function foo(){ console.log("Callback"); }
     </script>
-  <body>
+  <body ng-app="LinesOfCodeApp" ng-controller="LinesOfCodeCtrl" data-ng-init="init()">
     <div class="container">
       <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -54,7 +54,7 @@
               <li class="active"><a href="#">Home</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Options <span class="caret"></span></a>
-                <ul ng-app="LinesOfCodeApp" ng-controller="LinesOfCodeCtrl" class="dropdown-menu" role="menu">
+                <ul class="dropdown-menu" role="menu">
                   <li><a href="javascript:void(0);" ng-click = "saveAll()">Save</a></li>
                   <li><a href="javascript:void(0);" ng-click = "resetAll()">Reset</a></li>
                 </ul>
@@ -66,11 +66,9 @@
     </div> <!-- /container -->
 
     <div class="container">
-        <div ng-app="LinesOfCodeApp" ng-controller="LinesOfCodeCtrl" data-ng-init="init()">
-            <p>
-                <button type="button" class="btn btn-info" ng-click="addLoC()">Code some lines</button>
-                {{ "You have " + LoC + " line(s) of code and $" + money }}<br>
-            </p>
+        <div>
+            <button type="button" class="btn btn-info" ng-click="addLoC()">Code some lines</button>
+            {{ "You have " + LoC + " line(s) of code and $" + money }}<br>
             <p><button type="button" class="btn btn-success" ng-click="sellAll()">Sell</button></p>
             <p>
             </p>

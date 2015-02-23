@@ -55,11 +55,15 @@
 
     <div class="container">
         <div ng-app="LinesOfCodeApp" ng-controller="LinesOfCodeCtrl" data-ng-init="init()">
-            <button type="button" class="btn btn-info" ng-click="addLoC()">Code some lines</button>
-            {{ "You have " + LoC + " line(s) of code and $" + money }}<br>
-            <button type="button" class="btn btn-success" ng-click="sellAll()">Sell</button><br>
-            <button type="button" class="btn btn-success" ng-click="saveAll()">Save</button>
-            <button type="button" class="btn btn-danger" ng-click="resetAll()">Reset</button>
+            <p>
+                <button type="button" class="btn btn-info" ng-click="addLoC()">Code some lines</button>
+                {{ "You have " + LoC + " line(s) of code and $" + money }}<br>
+            </p>
+            <p><button type="button" class="btn btn-success" ng-click="sellAll()">Sell</button></p>
+            <p>
+                <button type="button" class="btn btn-success" ng-click="saveAll()">Save</button>
+                <button type="button" class="btn btn-danger" ng-click="resetAll()">Reset</button>
+            </p>
         </div>
     </div>
 

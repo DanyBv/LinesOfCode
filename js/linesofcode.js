@@ -37,7 +37,7 @@ app.controller("LinesOfCodeCtrl", function($scope) {
         var loc=parseInt(readCookie("loc"));
         if(!isNaN(loc))
             $scope.LoC=loc;
-        var money=parseInt(readCookie("money"));
+        var money=parseDouble(readCookie("money"));
         if(!isNaN(money))
             $scope.money=money;
     };

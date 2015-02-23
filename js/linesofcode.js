@@ -9,17 +9,37 @@ function stopRKey(evt) {
 document.onkeypress = stopRKey;
 
 var app = angular.module("LinesOfCodeApp", []);
+angular.module('LinesOfCodeApp', []).service('sharedProperties', function () {
+        var LoC = 0;
+        var money=0;
+
+        return {
+            getMoney: function () {
+                return money;
+            },
+            setMoney: function(value) {
+                money = value;
+            },
+            getLoc: function () {
+                return Loc;
+            },
+            setLoc: function(value) {
+                LoC = value;
+            }
+        };
+    });
+
 app.controller("LinesOfCodeCtrl", function($scope) {
-    $scope.LoC=0;
-    $scope.money=0.0;
-    
     $scope.addLoC = function() {
-        $scope.LoC++;
+        var loc = sharedProperties.getLoc();
+        sharedProperties.setLoc(loc+1);
     };
     
     $scope.sellAll = function() {
-        $scope.money+=0.5*$scope.LoC;
-        $scope.LoC=0;
+        var loc = sharedProperties.getLoc();
+        var money = sharedProperties.getMoney();
+        sharedProperties.setMoney(money+0.5*loc);
+        sharedProperties.setLoc(0);
     }
     
     $scope.init = function() {
@@ -33,8 +53,8 @@ app.controller("LinesOfCodeCtrl", function($scope) {
 });
 app.controller("MenuCtrl", function($scope) {
     $scope.saveAll = function() {   
-       createCookie("loc", $scope.LoC, Infinity);
-       createCookie("money", $scope.money, Infinity);
+       createCookie("loc", sharedProperties.getLoc(), Infinity);
+       createCookie("money", sharedProperties.getMoney(), Infinity);
     };
     
     $scope.resetAll = function() {   

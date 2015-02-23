@@ -43,5 +43,5 @@ app.controller("MenuCtrl", function($scope) {
         location.reload();
     };
     
-    $scope.saveTimer = setInterval(saveAll, 60000);
+    $scope.saveTimer = setInterval($scope.saveAll, 60000);
 });

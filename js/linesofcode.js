@@ -23,11 +23,6 @@ app.controller("LinesOfCodeCtrl", function($scope, $timeout) {
         $scope.LoC++;
     };
     
-    $scope.saveAll = function() {   
-       createCookie("loc", $scope.LoC, Infinity);
-       createCookie("money", $scope.money, Infinity);
-    };
-    
     $scope.buyUnit = function($id) {
         if($id==1)//Skilled kid
         {
@@ -46,6 +41,14 @@ app.controller("LinesOfCodeCtrl", function($scope, $timeout) {
         $scope.LoC=0;
     }
     
+    $scope.saveAll = function() {   
+       createCookie("loc", $scope.LoC, Infinity);
+       createCookie("money", $scope.money, Infinity);
+       createCookie("sk", $scope.sk, Infinity);
+       createCookie("skp", $scope.skp, Infinity);
+       createCookie("skps", $scope.skps, Infinity);
+    };
+    
     $scope.resetAll = function() {   
         eraseCookie("loc");
         eraseCookie("money");
@@ -62,6 +65,15 @@ app.controller("LinesOfCodeCtrl", function($scope, $timeout) {
         var money=parseFloat(readCookie("money"));
         if(!isNaN(money))
             $scope.money=money;
+        var skps=parseFloat(readCookie("skps"));
+        if(!isNaN(money))
+            $scope.skps=skps;
+        var skp=parseFloat(readCookie("skp"));
+        if(!isNaN(money))
+            $scope.skp=skp;
+        var sk=parseInt(readCookie("sk"));
+        if(!isNaN(money))
+            $scope.sk=sk;
     };
     
     $scope.doThings = function() {

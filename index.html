@@ -10,7 +10,31 @@
     <title>Lines of Code</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
   </head>
+    <script>
+        $(function(){
 
+        $("#typed").typed({
+            strings: ["Typed.js is a <strong>jQuery</strong> plugin.", "It <em>types</em> out sentences.", "And then deletes them.", "Try it out!"],
+            typeSpeed: 30,
+            backDelay: 500,
+            loop: false,
+            contentType: 'html', // or text
+            // defaults to false for infinite loop
+            loopCount: false,
+            callback: function(){ foo(); },
+            resetCallback: function() { newTyped(); }
+        });
+
+        $(".reset").click(function(){
+            $("#typed").typed('reset');
+        });
+
+    });
+
+    function newTyped(){ /* A new typed object */ }
+
+    function foo(){ console.log("Callback"); }
+    </script>
   <body>
     <div class="container">
       <nav class="navbar navbar-default">
@@ -23,7 +47,7 @@
               <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#">Lines of Code</a>
-            <a class="navbar-brand" href="#"><span class="text-muted small">v1.0.0</span></a>
+            <a class="navbar-brand" href="#"><span class="text-muted small">PRE-ALPHA</span></a>
           </div><!--/.nav-header -->
         </div><!--/.container-fluid -->
       </nav>
@@ -33,6 +57,8 @@
         <div ng-app="LinesOfCodeApp" ng-controller="LinesOfCodeCtrl" data-ng-init="init()">
             <button type="button" class="btn btn-info" ng-click="addLoC()">Code some lines</button>
             {{ LoC + " line(s) of code" }}
+            {{ "$" + money }}
+            <button type="button" class="btn btn-success" ng-click="sellAll()">Sell</button>
             <button type="button" class="btn btn-success" ng-click="saveAll()">Save</button>
             <button type="button" class="btn btn-danger" ng-click="resetAll()">Reset</button>
         </div>
@@ -53,6 +79,7 @@
     <script src="js/typed.js"></script>
     <script src="js/angular.min.js"></script>
     <script src="js/cookies.js"></script>
+    <script src="js/typed.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/linesofcode.js"></script>
   </body>

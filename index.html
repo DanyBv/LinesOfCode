@@ -43,22 +43,18 @@
                     {{ "You have " + LoC + " line(s) of code and $" + money }}
                 </p>
                 <p>
+                    <button type="button" class="btn btn-info" ng-click="buyUnit(1)" data-toggle="tooltip" title="Price: {{skp}}">Buy a skilled kid</button>
+                    {{ "You have " + sk + " skilled kids and they make for you " + skps + " line(s) of code/second" }}
+                </p>
+                <p>
                     <button type="button" class="btn btn-success" ng-click="sellAll()">Sell</button>
                 </p>
                 <p>
-                    <button type="button" class="btn btn-success" ng-click "saveall()" )">Save</button>
-                    <button type="button" class="btn btn-danger" ng-click "resetall()" )">Reset</button>
+                    <button type="button" class="btn btn-success" ng-click="saveAll()">Save</button>
+                    <button type="button" class="btn btn-danger" ng-click="resetAll()">Reset</button>
                 </p>
             </div>
         </div>
-        <script>
-              $(function(){
-                  $(".element").typed({
-                    strings: ["void createLineOfCode(){linesofcode++};"],
-                    typeSpeed: 0
-                  });
-              });
-            </script>
         <div class="element">
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

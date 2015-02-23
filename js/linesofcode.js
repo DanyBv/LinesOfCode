@@ -17,21 +17,10 @@ app.controller("LinesOfCodeCtrl", function($scope) {
         $scope.LoC++;
     };
     
-    $scope.saveAll = function() {   
-       createCookie("loc", $scope.LoC, Infinity);
-       createCookie("money", $scope.money, Infinity);
-    };
-    
     $scope.sellAll = function() {
         $scope.money+=0.5*$scope.LoC;
         $scope.LoC=0;
     }
-    
-    $scope.resetAll = function() {   
-        eraseCookie("loc");
-        eraseCookie("money");
-        location.reload();
-    };
     
     $scope.init = function() {
         var loc=parseInt(readCookie("loc"));
@@ -40,6 +29,18 @@ app.controller("LinesOfCodeCtrl", function($scope) {
         var money=parseDouble(readCookie("money"));
         if(!isNaN(money))
             $scope.money=money;
+    };
+});
+app.controller("MenuCtrl", function($scope) {
+    $scope.saveAll = function() {   
+       createCookie("loc", $scope.LoC, Infinity);
+       createCookie("money", $scope.money, Infinity);
+    };
+    
+    $scope.resetAll = function() {   
+        eraseCookie("loc");
+        eraseCookie("money");
+        location.reload();
     };
     
     $scope.saveTimer = setInterval(saveAll, 60000);

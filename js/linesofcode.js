@@ -114,13 +114,11 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
         {
             statusAlert("alert-success","Now you have enough characters to create a line of code :D .")
             $("#buyloc").show();
-            $("#statusbar").show();
         }
       if($scope.loc>=$scope.pgp && $("#buypg").is(":hidden"))
       {
             statusAlert("alert-success","Now you have enough lines of code to attract some programmers :D .")
             $("#buypg").show();
-            $("#statusbar").show();
       }
       if($scope.loc && $("#buyloc").is(":hidden"))
           $("buyloc").show();

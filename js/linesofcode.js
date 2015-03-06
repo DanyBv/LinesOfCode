@@ -7,7 +7,6 @@ function hidethem()
 {
     $("#buyloc").hide();
     $("#buypg").hide();
-    $("#statusbar").hide();
 }
 
 function stopRKey(evt) { 
@@ -18,8 +17,7 @@ function stopRKey(evt) {
 
 function statusAlert(atype, atext)
 {
-    $("#statusbar").addClass(atype);
-    $("#statusbar").html('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+atext);
+    $("#statusbar").append('<div class="alert '+atype+' alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+atext+'</div>');
 }
 
 $(document).ready(hidethem);
@@ -112,24 +110,24 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
       $scope.chrt+=$scope.loc;
       $scope.loc+=$scope.pg;
       $scope.loct+=$scope.pg;
-      if($scope.chr>=$scope.locp)
+      if($scope.chr>=$scope.locp && $("#buyloc").is(":hidden"))
         {
             statusAlert("alert-success","Now you have enough characters to create a line of code :D .")
             $("#buyloc").show();
             $("#statusbar").show();
         }
-      if($scope.loc>=$scope.pgp)
+      if($scope.loc>=$scope.pgp && $("#buypg").is(":hidden"))
       {
             statusAlert("alert-success","Now you have enough lines of code to attract some programmers :D .")
             $("#buypg").show();
             $("#statusbar").show();
       }
-      if($scope.loc)
+      if($scope.loc && $("#buyloc").is(":hidden"))
           $("buyloc").show();
-      if($scope.pg)
+      if($scope.pg && $("#buypg").is(":hidden"))
           $("buypg").show();
     }
     
-    //$interval( function(){ $scope.saveAll(); }, 60000);
+    $interval( function(){ $scope.saveAll(); }, 60000);
     $interval( function(){ $scope.doThings(); }, 1000);
 });

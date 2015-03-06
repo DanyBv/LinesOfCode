@@ -17,7 +17,9 @@ function stopRKey(evt) {
 
 function statusAlert(atype, atext)
 {
-    $("#statusbar").append('<div class="alert '+atype+' alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+atext+'</div>');
+    if($("#statusbar").children().length>=5)
+        $("#statusbar").children().slice(4,$("#statusbar").children().length).remove();
+    $("#statusbar").prepend('<div class="alert '+atype+' alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+atext+'</div>');
 }
 
 $(document).ready(hidethem);
@@ -32,7 +34,7 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
     $scope.locp=10;
     $scope.pg=0;
     $scope.pgp=25;
-    
+
     $scope.click = function() {
         $scope.chr+=$scope.chrpc;
         $scope.chrt+=$scope.chrpc;
@@ -65,6 +67,7 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
        createCookie("locp", $scope.locp, Infinity);
        createCookie("pg", $scope.pg, Infinity);
        createCookie("pgp", $scope.pgp, Infinity);
+       statusAlert("alert-success","The game was saved successfull .")
     };
     
     $scope.resetAll = function() {   
@@ -80,32 +83,30 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
     
     $scope.init = function() {
         var x=parseFloat(readCookie("chr"));
-        if(!isNaN(chr))
+        if(!isNaN(x))
             $scope.chr=x;
         var x=parseFloat(readCookie("chrpc"));
-        if(!isNaN(chrpc))
+        if(!isNaN(x))
             $scope.chrpc=x;
         var x=parseFloat(readCookie("chrt"));
-        if(!isNaN(chrt))
+        if(!isNaN(x))
             $scope.chr=x;
         var x=parseFloat(readCookie("loc"));
-        if(!isNaN(loc))
+        if(!isNaN(x))
             $scope.loc=x;
         var x=parseFloat(readCookie("locp"));
-        if(!isNaN(locp))
+        if(!isNaN(x))
             $scope.locp=x;
         var x=parseFloat(readCookie("pg"));
-        if(!isNaN(pg))
+        if(!isNaN(x))
             $scope.pg=x;
         var x=parseFloat(readCookie("pgp"));
-        if(!isNaN(pgp))
+        if(!isNaN(x))
             $scope.pgp=x;
     };
     
     $scope.doThings = function() {
       
-      //$scope.LoC += $scope.pg*$scope.pgps;
-      //$scope.LoC.toFixed(2);
       $scope.chr += $scope.loc;
       $scope.chrt+=$scope.loc;
       $scope.loc+=$scope.pg;

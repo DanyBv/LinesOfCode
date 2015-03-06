@@ -36,18 +36,22 @@
             </nav>
         </div>
         <!-- /container -->
+        
         <div class="container">
+            <div class="alert" role="alert" id="statusbar">
+            </div>
             <div ng-app="LinesOfCodeApp" ng-controller="LinesOfCodeCtrl" data-ng-init="init()">
                 <p>
-                    <button type="button" class="btn btn-info" ng-click="addLoC()">Code some lines</button>
-                    {{ "You have " + LoC + " line(s) of code and $" + money }}
+                    <button type="button" class="btn btn-info" ng-click="click()">Type</button>
+                    {{ "You have " + chr + " character(s)" }}
                 </p>
-                <p>
-                    <button type="button" class="btn btn-info" ng-click="buyUnit(1)" data-toggle="tooltip" title="Price: {{skp}}">Buy a skilled kid</button>
-                    {{ "You have " + sk + " skilled kids and they make for you " + skps + " line(s) of code/second" }}
+                <p id="buyloc">
+                    <button type="button" class="btn btn-info" ng-click="buyUnit(1)" data-toggle="tooltip" title="Price: {{locp}} characters">Create line of code</button>
+                    {{ "You have " + loc + " lines of code and they generate " + loc + " characters/second" }}
                 </p>
-                <p>
-                    <button type="button" class="btn btn-success" ng-click="sellAll()">Sell</button>
+                <p id="buypg">
+                    <button type="button" class="btn btn-info" ng-click="buyUnit(2)" data-toggle="tooltip" title="Price: {{pgp}} lines of code">Attract a programmer</button>
+                    {{ "You have " + pg + " programmers and they create " + pg + " lines of code/second" }}
                 </p>
                 <p>
                     <button type="button" class="btn btn-success" ng-click="saveAll()">Save</button>

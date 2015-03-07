@@ -62,7 +62,10 @@
                         <button type="button" class="btn btn-info" ng-click="buyUnit(2)" data-toggle="tooltip" title="Price: {{pgp}} lines of code">Attract a programmer</button>
                         {{ "You have " + pg + " programmers and they create " + pg + " lines of code/second" }}
                     </p>
-                  
+                    <p id="buyent">
+                        <button type="button" class="btn btn-info" ng-click="buyUnit(3)" data-toggle="tooltip" title="Price: {{pgp}} programmers">Form an enterprise</button>
+                        {{ "You have " + ent + " enterprises and they hire " + ent + " programmers/second" }}
+                    </p>
                   </div>
                   <div role="tabpanel" class="tab-pane" id="upgrades">Nothing here yet...</div>
                   <div role="tabpanel" class="tab-pane" id="settings">
@@ -73,8 +76,6 @@
                   </div>
                 </div>
             </div>
-        </div>
-        <div class="element">
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="js/typed.js"></script>

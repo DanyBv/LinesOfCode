@@ -10,6 +10,10 @@ function hidethem()
     $("#buyent").hide();
 }
 
+function float2int (value) {
+    return value | 0;
+}
+
 function stopRKey(evt) { 
   var evt = (evt) ? evt : ((event) ? event : null); 
   var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null); 
@@ -48,6 +52,7 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
     };
     
     $scope.buyUnit = function($id) {
+        $scope.floorAll();
         if($id==1)//Line of code
         {
             if($scope.chr>=$scope.locp)
@@ -78,17 +83,18 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
                 $scope.entpm*=1.01;
             }
         }
+        $scope.floorAll();
     };
     
     $scope.floorAll = function() {
-        $scope.chr=parseFloat($scope.chr.toFixed(2));
-        $scope.chrpc=parseFloat($scope.chrpc.toFixed(2));
-        $scope.loc=parseFloat($scope.loc.toFixed(2));
-        $scope.locp=parseFloat($scope.locp.toFixed(2));
-        $scope.pg=parseFloat($scope.pg.toFixed(2));
-        $scope.pgp=parseFloat($scope.pgp.toFixed(2));
-        $scope.ent=parseFloat($scope.ent.toFixed(2));
-        $scope.entp=parseFloat($scope.entp.toFixed(2));
+        $scope.chr=float2int($scope.chr);
+        $scope.chrpc=float2int($scope.chrpc);
+        $scope.loc=float2int($scope.loc);
+        $scope.locp=float2int($scope.locp);
+        $scope.pg=float2int($scope.pg);
+        $scope.pgp=float2int($scope.pgp);
+        $scope.ent=float2int($scope.ent);
+        $scope.entp=float2int($scope.entp);
     }
     
     $scope.saveAll = function() {   
@@ -200,5 +206,4 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
     
     $interval( function(){ $scope.saveAll(); }, 60000);
     $interval( function(){ $scope.doThings(); }, 1000);
-    $interval( function(){ $scope.floorAll(); }, 50);
 });

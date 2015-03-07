@@ -61,6 +61,8 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
                 $scope.chr-=$scope.locp;
                 $scope.locp*=$scope.locpm;
                 $scope.locpm*=1.01;
+                if($scope.locpm>=2)
+                    $scope.locpm=1.2;
             }
         }
         else if($id==2)//Programmer
@@ -71,6 +73,8 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
                 $scope.loc-=$scope.pgp;
                 $scope.pgp*=$scope.pgpm;
                 $scope.pgpm*=1.01;
+                if($scope.pgpm>=2)
+                    $scope.pgpm=1.2;
             }
         }
         else if($id==3)//Enterprise
@@ -81,6 +85,8 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
                 $scope.pg-=$scope.entp;
                 $scope.entp*=$scope.entpm;
                 $scope.entpm*=1.01;
+                if($scope.entpm>=2)
+                    $scope.entpm=1.2;
             }
         }
         $scope.floorAll();

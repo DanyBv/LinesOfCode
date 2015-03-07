@@ -9,6 +9,7 @@
         <link rel="icon" href="favicon.ico">
         <title>Lines of Code</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/game.css" rel="stylesheet">
     </head>
     <body>
         <div class="container">
@@ -22,7 +23,7 @@
                     <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#">Lines of Code</a>
-                    <a class="navbar-brand" href="#"><span class="text-muted small">PRE-ALPHA</span></a>
+                    <a class="navbar-brand" href="#"><span class="text-muted small">ALPHA</span></a>
                 </div>
                 <!--/.nav-header -->
                 <div id="navbar" class="navbar-collapse collapse">
@@ -39,27 +40,38 @@
         
         <div class="container">
             <div id="statusbar">
-            </div>
+            </div>            
             <div ng-app="LinesOfCodeApp" ng-controller="LinesOfCodeCtrl" data-ng-init="init()">
-                <p>
-                    <button type="button" class="btn btn-info" ng-click="click()">Type</button>
-                    {{ "You have " + chr + " character(s)" }}
-                </p>
-                <p id="buyloc">
-                    <button type="button" class="btn btn-info" ng-click="buyUnit(1)" data-toggle="tooltip" title="Price: {{locp}} characters">Create line of code</button>
-                    {{ "You have " + loc + " lines of code and they generate " + loc + " characters/second" }}
-                </p>
-                <p id="buypg">
-                    <button type="button" class="btn btn-info" ng-click="buyUnit(2)" data-toggle="tooltip" title="Price: {{pgp}} lines of code">Attract a programmer</button>
-                    {{ "You have " + pg + " programmers and they create " + pg + " lines of code/second" }}
-                </p>
-                <p>
-                    <button type="button" class="btn btn-success" ng-click="saveAll()">Save</button>
-                    <button type="button" class="btn btn-danger" ng-click="resetAll()">Reset</button>
-                </p>
-                <p class="hidden">
-                    {{ "Debug: locshown: " + locshown + "and pgshown: " + pgshown }}
-                </p>
+                <ul class="nav nav-tabs" role="tablist" id="myTab">
+                  <li role="presentation" class="active"><a href="#units" aria-controls="units" role="tab" data-toggle="tab">Units</a></li>
+                  <li role="presentation"><a href="#upgrades" aria-controls="upgrades" role="tab" data-toggle="tab">Upgrades</a></li>
+                  <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+                </ul>
+
+                <div class="tab-content">
+                  <div role="tabpanel" class="tab-pane active" id="units">
+                    <p>
+                        <button type="button" class="btn btn-info" ng-click="click()">Type</button>
+                        {{ "You have " + chr + " character(s)" }}
+                    </p>
+                    <p id="buyloc">
+                        <button type="button" class="btn btn-info" ng-click="buyUnit(1)" data-toggle="tooltip" title="Price: {{locp}} characters">Create line of code</button>
+                        {{ "You have " + loc + " lines of code and they generate " + loc + " characters/second" }}
+                    </p>
+                    <p id="buypg">
+                        <button type="button" class="btn btn-info" ng-click="buyUnit(2)" data-toggle="tooltip" title="Price: {{pgp}} lines of code">Attract a programmer</button>
+                        {{ "You have " + pg + " programmers and they create " + pg + " lines of code/second" }}
+                    </p>
+                  
+                  </div>
+                  <div role="tabpanel" class="tab-pane" id="upgrades">Nothing here yet...</div>
+                  <div role="tabpanel" class="tab-pane" id="settings">
+                    <p>
+                        <button type="button" class="btn btn-success" ng-click="saveAll()">Save</button>
+                        <button type="button" class="btn btn-danger" ng-click="resetAll()">Reset</button>
+                    </p>
+                  </div>
+                </div>
             </div>
         </div>
         <div class="element">

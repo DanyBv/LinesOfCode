@@ -62,15 +62,15 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
     };
     
     $scope.saveAll = function() {   
-       createCookie("chr", $scope.chr, 90);
-       createCookie("chrpc", $scope.chrpc, 90);
-       createCookie("chrt", $scope.chrt, 90);
-       createCookie("loc", $scope.loc, 90);
-       createCookie("locp", $scope.locp, 90);
-       createCookie("locshown", $scope.pgshown, 90);
-       createCookie("pg", $scope.pg, 90);
-       createCookie("pgp", $scope.pgp, 90);
-       createCookie("pgshown", $scope.pgshown, 90);
+       createCookie("chr", $scope.chr, 365);
+       createCookie("chrpc", $scope.chrpc, 365);
+       createCookie("chrt", $scope.chrt, 365);
+       createCookie("loc", $scope.loc, 365);
+       createCookie("locp", $scope.locp, 365);
+       createCookie("locshown", $scope.locshown, 365);
+       createCookie("pg", $scope.pg, 365);
+       createCookie("pgp", $scope.pgp, 365);
+       createCookie("pgshown", $scope.pgshown, 365);
        statusAlert("alert-success","The game was saved successfull .")
     };
     

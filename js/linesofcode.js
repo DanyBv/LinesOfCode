@@ -96,7 +96,7 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
             $scope.chrpc=x;
         var x=parseFloat(readCookie("chrt"));
         if(!isNaN(x))
-            $scope.chr=x;
+            $scope.chrt=x;
         var x=parseFloat(readCookie("loc"));
         if(!isNaN(x))
             $scope.loc=x;

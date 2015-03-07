@@ -34,7 +34,9 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
     $scope.locp=10;
     $scope.pg=0;
     $scope.pgp=25;
-
+    $scope.locshown=false;
+    $scope.pgshown=false;
+    
     $scope.click = function() {
         $scope.chr+=$scope.chrpc;
         $scope.chrt+=$scope.chrpc;
@@ -65,8 +67,10 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
        createCookie("chrt", $scope.chrt, Infinity);
        createCookie("loc", $scope.loc, Infinity);
        createCookie("locp", $scope.locp, Infinity);
+       createCookie("locshown", $scope.pgshown, Infinity);
        createCookie("pg", $scope.pg, Infinity);
        createCookie("pgp", $scope.pgp, Infinity);
+       createCookie("pgshown", $scope.pgshown, Infinity);
        statusAlert("alert-success","The game was saved successfull .")
     };
     
@@ -76,8 +80,10 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
         eraseCookie("chrt");
         eraseCookie("loc");
         eraseCookie("locp");
+        eraseCookie("locshown");
         eraseCookie("pg");
         eraseCookie("pgp");
+        eraseCookie("pgshown");
         location.reload();
     };
     
@@ -103,6 +109,10 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
         var x=parseFloat(readCookie("pgp"));
         if(!isNaN(x))
             $scope.pgp=x;
+        if(readCookie("locshown")=="true")
+            $scope.locshown=true;
+        if(readCookie("pgshown")=="true")
+            $scope.pgshown=true;
     };
     
     $scope.doThings = function() {
@@ -111,19 +121,21 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
       $scope.chrt+=$scope.loc;
       $scope.loc+=$scope.pg;
       $scope.loct+=$scope.pg;
-      if($scope.chr>=$scope.locp && $("#buyloc").is(":hidden"))
+      if($scope.chr>=$scope.locp && $scope.locshown == false)
         {
             statusAlert("alert-success","Now you have enough characters to create a line of code :D .")
             $("#buyloc").show();
+            $scope.locshown = true;
         }
-      if($scope.loc>=$scope.pgp && $("#buypg").is(":hidden"))
+      if($scope.loc>=$scope.pgp && $scope.pgshown == false)
       {
             statusAlert("alert-success","Now you have enough lines of code to attract some programmers :D .")
             $("#buypg").show();
+            $scope.pgshown = true;
       }
-      if($scope.loc && $("#buyloc").is(":hidden"))
+      if($scope.locshown && $("#buyloc").is(":hidden"))
           $("buyloc").show();
-      if($scope.pg && $("#buypg").is(":hidden"))
+      if($scope.pgshown && $("#buypg").is(":hidden"))
           $("buypg").show();
     }
     

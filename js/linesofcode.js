@@ -133,9 +133,9 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
             $("#buypg").show();
             $scope.pgshown = true;
       }
-      if($scope.locshown && $("#buyloc").is(":hidden"))
+      if($scope.locshown == true && $("#buyloc").is(":hidden"))
           $("buyloc").show();
-      if($scope.pgshown && $("#buypg").is(":hidden"))
+      if($scope.pgshown == true && $("#buypg").is(":hidden"))
           $("buypg").show();
     }
     

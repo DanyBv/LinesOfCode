@@ -31,7 +31,7 @@ function statusAlert(atype, atext)
     if($("#statusbar").children().length>=5)
         $("#statusbar").children().slice(4,$("#statusbar").children().length).remove();
     $("#statusbar").prepend('<div class="alert '+atype+' alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+atext+'</div>');
-    window.setTimeout(function() { $("#statusbar").children().last().alert('close') }, 30000);
+    window.setTimeout(function() { $("#statusbar").children().last().alert('close') },  10000);
 }
 
 $(document).ready(hidethem);

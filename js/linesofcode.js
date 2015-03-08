@@ -205,7 +205,7 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
         if(readCookie("entshown")=="true")
             $scope.entshown=true;
         if(readCookie("mf")=="true")
-            $scope.entshown=true;
+            $scope.mf=true;
     };
     
     $scope.doThings = function() {

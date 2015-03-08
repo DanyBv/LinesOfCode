@@ -210,9 +210,10 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
             $scope.mf=true;
         var now = new Date();
         var x=Date.parse(now.toUTCString())/1000;
-        if(x>Date.parse(readCookie("lastdate"))/1000+60)
+        var y=Date.parse(readCookie("lastdate"))/1000;
+        if(x>y+60)
         {
-            $scope.doThings(x-Date.parse(readCookie("lastdate")));
+            $scope.doThings(x-y);
             statusAlert("alert-info","Your units continued to work even when you were away :D .");
         }
     };

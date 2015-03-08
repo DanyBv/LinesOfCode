@@ -49,7 +49,7 @@
                     </p>
                     <p id="buyloc">
                         <button type="button" class="btn btn-info" ng-click="buyUnit(1)" data-toggle="tooltip" title="Price: {{locp}} characters">Create line of code</button>
-                        {{ "You have " + loc + " lines of code and they generate " + loc + " characters/second" }}
+                        {{ "You have " + loc + " lines of code and they generate " + loc*chrps + " characters/second" }}
                     </p>
                     <p id="buypg">
                         <button type="button" class="btn btn-info" ng-click="buyUnit(2)" data-toggle="tooltip" title="Price: {{pgp}} lines of code">Attract a programmer</button>
@@ -60,7 +60,17 @@
                         {{ "You have " + ent + " enterprises and they hire " + ent + " programmers/second" }}
                     </p>
                   </div>
-                  <div role="tabpanel" class="tab-pane" id="upgrades">Nothing here yet...</div>
+                  <div role="tabpanel" class="tab-pane" id="upgrades">
+                    <p>
+                        Use multiple fingers for typing:<button type="button" class="btn btn-info" ng-click="buyUpgrade(1)" data-toggle="tooltip" title="Price: 100 characters">Buy</button>
+                        <br>It multiplies your characters per click by 3x.
+                        <div class="progress">
+                          <div id="multiplefingers" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                            <span>0%</span>
+                          </div>
+                        </div>
+                    </p>
+                  </div>
                   <div role="tabpanel" class="tab-pane" id="options">
                     <p>
                         <button type="button" class="btn btn-success" ng-click="saveAll()">Save</button>

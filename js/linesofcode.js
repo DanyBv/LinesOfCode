@@ -3,6 +3,12 @@ $('[data-toggle="tooltip"]').tooltip({
     'placement': 'top'
 });
 
+window.setTimeout(function() {
+  $(".alert").fadeTo(500, 0).slideUp(500, function(){
+    $(this).remove(); 
+  });
+}, 3000);
+
 function hidethem()
 {
     $("#buyloc").hide();
@@ -25,6 +31,7 @@ function statusAlert(atype, atext)
     if($("#statusbar").children().length>=5)
         $("#statusbar").children().slice(4,$("#statusbar").children().length).remove();
     $("#statusbar").prepend('<div class="alert '+atype+' alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+atext+'</div>');
+    window.setTimeout(function() { $("#statusbar").children().last().alert('close') }, 30000);
 }
 
 $(document).ready(hidethem);
@@ -34,6 +41,7 @@ var app = angular.module("LinesOfCodeApp", []);
 app.controller("LinesOfCodeCtrl", function($scope, $interval) {
     $scope.chr=0;
     $scope.chrpc=1;
+    $scope.chrps=1;
     $scope.loc=0;
     $scope.locp=10;
     $scope.locpm=1.01;
@@ -43,6 +51,7 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
     $scope.ent=0;
     $scope.entp=200;
     $scope.entpm=1.01;
+    $scope.mf=false;
     $scope.locshown=false;
     $scope.pgshown=false;
     $scope.entshown=false;
@@ -50,7 +59,17 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
     $scope.click = function() {
         $scope.chr+=$scope.chrpc;
     };
-    
+    $scope.buyUpgrade = function($id){
+        $scope.floorAll();
+        if($id==1 && $scope.mf==false)//Triple characters (per click)
+            if($scope.chr>=100)
+            {
+                $scope.chrpc*=3;
+                $scope.chr-=100;
+                $scope.mf=true;
+            }
+        $scope.floorAll();
+    };
     $scope.buyUnit = function($id) {
         $scope.floorAll();
         if($id==1)//Line of code
@@ -106,6 +125,7 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
     $scope.saveAll = function() {   
        createCookie("chr", $scope.chr, 365);
        createCookie("chrpc", $scope.chrpc, 365);
+       createCookie("chrps", $scope.chrps, 365);
        createCookie("loc", $scope.loc, 365);
        createCookie("locp", $scope.locp, 365);
        createCookie("locpm", $scope.locpm, 365);
@@ -118,12 +138,14 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
        createCookie("entp", $scope.entp, 365);
        createCookie("entpm", $scope.entpm, 365);
        createCookie("entshown", $scope.entshown, 365);
+       createCookie("mf", $scope.mf, 365);
        statusAlert("alert-success","The game was saved successfull .")
     };
     
     $scope.resetAll = function() {   
         eraseCookie("chr");
         eraseCookie("chrpc");
+        eraseCookie("chrps");
         eraseCookie("loc");
         eraseCookie("locp");
         eraseCookie("locpm");
@@ -135,6 +157,7 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
         eraseCookie("entp");
         eraseCookie("entpm");
         eraseCookie("pgshown");
+        eraseCookie("mf");
         location.reload();
     };
     
@@ -145,6 +168,9 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
         var x=parseFloat(readCookie("chrpc"));
         if(!isNaN(x))
             $scope.chrpc=x;
+        var x=parseFloat(readCookie("chrps"));
+        if(!isNaN(x))
+            $scope.chrps=x;
         var x=parseFloat(readCookie("loc"));
         if(!isNaN(x))
             $scope.loc=x;
@@ -178,10 +204,12 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
             $scope.pgshown=true;
         if(readCookie("entshown")=="true")
             $scope.entshown=true;
+        if(readCookie("mf")=="true")
+            $scope.entshown=true;
     };
     
     $scope.doThings = function() {
-      $scope.chr += $scope.loc;
+      $scope.chr += $scope.loc*$scope.chrps;
       $scope.loc += $scope.pg;
       $scope.pg  += $scope.ent;
       if($scope.chr>=$scope.locp && $scope.locshown == false)
@@ -208,6 +236,21 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
           $("#buypg").show();
       if($scope.entshown == true && $("#buyent").is(":hidden"))
           $("#buyent").show();
+      if($scope.mf==false)
+      {
+        if($scope.chr<100)
+        {
+            $("#multiplefingers").attr("aria-valuenow",$scope.chr);
+            $("#multiplefingers").css("width",$scope.chr+"%");
+            $("#multiplefingers").children().first().html($scope.chr+"%");
+        }
+        else
+        {
+            $("#multiplefingers").attr("aria-valuenow",100);
+            $("#multiplefingers").css("width","100%");
+            $("#multiplefingers").children().first().html("100%");
+        }
+      }
     }
     
     $interval( function(){ $scope.saveAll(); }, 60000);

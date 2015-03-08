@@ -236,6 +236,12 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
           $("#buypg").show();
       if($scope.entshown == true && $("#buyent").is(":hidden"))
           $("#buyent").show();
+      if($scope.mf == true && $("#descmf").is(":visible"))
+      {
+        $("#descmf").hide();
+        $("#buymf").attr("disabled","disabled");
+        $("#buymf").html("Bought");
+      }
       if($scope.mf==false)
       {
         if($scope.chr<100)

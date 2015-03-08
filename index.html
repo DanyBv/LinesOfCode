@@ -62,12 +62,14 @@
                   </div>
                   <div role="tabpanel" class="tab-pane" id="upgrades">
                     <p>
-                        Use multiple fingers for typing:<button type="button" class="btn btn-info" ng-click="buyUpgrade(1)" data-toggle="tooltip" title="Price: 100 characters">Buy</button>
-                        <br>It multiplies your characters per click by 3x.
-                        <div class="progress">
-                          <div id="multiplefingers" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                            <span>0%</span>
-                          </div>
+                        Use multiple fingers for typing:<button type="button" class="btn btn-info" ng-click="buyUpgrade(1)" data-toggle="tooltip" title="Price: 100 characters" id="buymf">Buy</button>
+                        <div id="descmf">
+                            It multiplies your characters per click by 3x.
+                            <div class="progress">
+                              <div id="multiplefingers" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                                <span>0%</span>
+                              </div>
+                            </div>
                         </div>
                     </p>
                   </div>

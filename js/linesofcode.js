@@ -139,6 +139,8 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
        createCookie("entpm", $scope.entpm, 365);
        createCookie("entshown", $scope.entshown, 365);
        createCookie("mf", $scope.mf, 365);
+       var now = new Date();
+       createCookie("lastdate", now.toUTCString(), 365);
        statusAlert("alert-success","The game was saved successfull .")
     };
     
@@ -206,12 +208,19 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
             $scope.entshown=true;
         if(readCookie("mf")=="true")
             $scope.mf=true;
+        var now = new Date();
+        var x=Date.parse(now.toUTCString())/1000;
+        if(x>Date.parse(readCookie("lastdate"))/1000+60)
+        {
+            $scope.doThings(x-Date.parse(readCookie("lastdate")));
+            statusAlert("alert-info","Your units continued to work even when you were away :D .");
+        }
     };
     
-    $scope.doThings = function() {
-      $scope.chr += $scope.loc*$scope.chrps;
-      $scope.loc += $scope.pg;
-      $scope.pg  += $scope.ent;
+    $scope.doThings = function($n) {
+      $scope.chr += $n*$scope.loc*$scope.chrps;
+      $scope.loc += $n*$scope.pg;
+      $scope.pg  += $n*$scope.ent;
       if($scope.chr>=$scope.locp && $scope.locshown == false)
         {
             statusAlert("alert-success","Now you have enough characters to create a line of code :D .");
@@ -260,5 +269,5 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
     }
     
     $interval( function(){ $scope.saveAll(); }, 60000);
-    $interval( function(){ $scope.doThings(); }, 1000);
+    $interval( function(){ $scope.doThings(1); }, 1000);
 });

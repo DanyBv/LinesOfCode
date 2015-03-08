@@ -215,6 +215,7 @@ app.controller("LinesOfCodeCtrl", function($scope, $interval) {
         {
             $scope.doThings(x-y);
             statusAlert("alert-info","Your units continued to work even when you were away :D .");
+            $scope.saveAll();
         }
     };
     
